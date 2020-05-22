@@ -39,13 +39,33 @@
 
 <div class="footer">
 	<img src="img/footer-bg.png" alt="" class="footer-bg">
-	<div class="counter">
+	
+	<div class="counter" id="counter-message">
 		Чат откроется через 
-		<span class="counter__val">10</span>
+		<span class="counter__val" id="countdown">10</span>
 		секунд
 	</div>
+	<noscript>
+        <div class="counter">
+            Подождите 15 секунд и обновите страницу
+        </div>
+    </noscript>
+    <script>
+        var counter = 15;
+        var interval_handle = setInterval(function () {
+
+            counter --;
+            document.getElementById('countdown').textContent = counter;
+            if (!counter) {
+                clearInterval(interval_handle);
+                document.getElementById('chat-enter').classList.add('active');
+                document.getElementById('chat-enter').href = '.';
+                document.getElementById('counter-message').remove();
+            }
+        }, 1000);
+    </script>
 	<div class="footer-button__wrapper">
-		<a href="" class="footer__button active">
+		<a href="javascript://" class="footer__button" id="chat-enter">
 		Открыть чат
 	</a>
 	</div>
